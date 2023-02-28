@@ -1,0 +1,19 @@
+.card {
+  display: flex;
+  flex-flow: column;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 282px;
+  box-shadow: var(--card-shadow);
+}
+
+.card__description {
+  background-color: white;
+  display: inline-flex;
+  justify-content: space-between;
+  padding: 25px 21px 25px;
+  column-gap: 16px;
+  margin: 0;
+}
+

@@ -1,0 +1,11 @@
+.theme_light {
+  --color-primary-text: #474749;
+  --color-secondary-text: #77757F;
+  --color-contrast-text: #474749;
+  --color-background: #F0F2F5;
+  --font-color: #000000;
+  --logo: url("../../../images/header__logo-dark.svg");
+  --card-border: 10px;
+  --card-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+}
+

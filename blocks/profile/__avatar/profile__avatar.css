@@ -1,0 +1,14 @@
+.profile__avatar {
+  box-sizing: border-box;
+  max-width: 120px;
+  max-height: 120px;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 879px) {
+  .profile__avatar {
+    justify-self: center;
+  }
+}

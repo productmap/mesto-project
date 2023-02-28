@@ -1,0 +1,42 @@
+.card__like {
+  display: flex;
+  width: 22px;
+  height: 20px;
+  background-image: url("../../../images/icon-like_disable.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: white;
+  transition: ease .3s;
+}
+
+.card__like-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.card__like-label {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+
+}
+
+.card__like-checkbox + .card__like {
+  background-image: url("../../../images/icon-like_disable.svg");
+}
+
+.card__like-checkbox:hover + .card__like {
+  background-image: url("../../../images/icon-like_hover.svg");
+}
+
+.card__like-checkbox:checked + .card__like {
+  background-image: url("../../../images/icon-like_active.svg");
+}
+

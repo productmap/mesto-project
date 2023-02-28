@@ -1,0 +1,19 @@
+.footer {
+  box-sizing: border-box;
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 880px;
+  max-height: 20px;
+  min-height: 20px;
+  justify-self: center;
+  justify-content: space-between;
+  padding: 60px 0 60px;
+}
+
+@media screen and (max-width: 879px){
+  .footer {
+    max-width: 100%;
+    padding: 46px 19px 36px;
+  }
+}
