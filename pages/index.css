@@ -1,11 +1,5 @@
 @import "../vendor/normalize.css";
 
-@import "../blocks/theme/theme.css";
-@import "../blocks/theme/__slider/switch__slider.css";
-@import "../blocks/theme/__toggle/switch__toggle.css";
-@import "../blocks/theme/_light/theme_light.css";
-@import "../blocks/theme/_dark/theme_dark.css";
-
 @import "../fonts/fonts.css";
 
 @import "../blocks/page/page.css";
@@ -23,6 +17,7 @@
 
 @import "../blocks/cards/cards.css";
 @import "../blocks/card/card.css";
+@import "../blocks/card/__description/card__description.css";
 @import "../blocks/card/__image/card__image.css";
 @import "../blocks/card/__title /card__title.css";
 @import "../blocks/card/__like/card__like.css";

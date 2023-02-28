@@ -1,8 +1,8 @@
 .profile__name {
   font-weight: 500;
-  font-size: 2.625rem;
-  line-height: 3rem;
-  color: var(--color-primary-text);
+  font-size: 42px;
+  line-height: 48px;
+  color: white;
   margin: 0;
   width: 100%;
   text-overflow: ellipsis;
@@ -12,8 +12,8 @@
 
 @media screen and (max-width: 879px) {
   .profile__name {
-    font-size: 1.6875rem;
-    line-height: 2.0625rem;
+    font-size: 27px;
+    line-height: 33px;
     margin-top: 26px;
     text-align: center;
   }

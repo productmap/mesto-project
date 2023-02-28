@@ -5,21 +5,21 @@
   min-width: 150px;
   min-height: 50px;
   max-height: 50px;
-  border: 1px solid var(--color-primary-text);
-  background-color: var(--color-background);
+  border: 1px solid white;
+  background-color: black;
   justify-self: center;
   align-self: center;
   opacity: 1;
-  transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.2s;
 }
 
 .profile__add-button-icon {
-  fill: var(--color-primary-text);
+  fill: white;
 }
 
 .profile__add-button:hover {
   opacity: .6;
-  transition: ease-in-out 0.3s;
+  transition: ease-in-out 0.2s;
 }
 
 @media screen and (max-width: 879px) {
