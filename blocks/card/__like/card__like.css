@@ -24,7 +24,6 @@
   align-items: center;
   margin: 0;
   padding: 0;
-
 }
 
 .card__like-checkbox + .card__like {
@@ -38,4 +37,3 @@
 .card__like-checkbox:checked + .card__like {
   background-image: url("../../../images/icon-like_active.svg");
 }
-
