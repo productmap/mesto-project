@@ -2,7 +2,9 @@
   --color-primary-text: #f6f6f6;
   --color-secondary-text: #f6f6f6;
   --color-contrast-text: #000;
-  --color-background: #2a2c2d;
+  --color-background: #000;
+  /* предпочтительный цвет фона */
+  /*--color-background: #2a2c2d;*/
   --font-color: #ffffff;
   --logo: url("../../../images/header__logo.svg");
   --card-border: 10px;

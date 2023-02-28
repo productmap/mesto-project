@@ -14,11 +14,11 @@ function toggleTheme() {
 
 
 (function () {
-  if (localStorage.getItem('theme') === 'theme_dark') {
-    setTheme('theme_dark');
+  if (localStorage.getItem('theme') === 'theme_light') {
+    setTheme('theme_light');
     document.getElementById('slider').checked = false;
   } else {
-    setTheme('theme_light');
+    setTheme('theme_dark');
     document.getElementById('slider').checked = true;
   }
 })();
