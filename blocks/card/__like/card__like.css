@@ -3,10 +3,10 @@
   width: 22px;
   height: 20px;
   background-image: url("../../../images/icon-like_disable.svg");
+  background-color: white;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: white;
   transition: ease .3s;
 }
 

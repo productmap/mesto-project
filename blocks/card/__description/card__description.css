@@ -1,4 +1,8 @@
 .card__description {
   margin: 0;
   padding: 25px 20px;
+  background-color: white;
+  display: inline-flex;
+  justify-content: space-between;
+  column-gap: 16px;
 }
