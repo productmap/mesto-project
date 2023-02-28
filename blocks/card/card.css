@@ -8,12 +8,4 @@
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
 }
 
-.card__description {
-  background-color: white;
-  display: inline-flex;
-  justify-content: space-between;
-  padding: 25px 21px 25px;
-  column-gap: 16px;
-  margin: 0;
-}
 
