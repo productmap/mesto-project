@@ -1,21 +1,21 @@
-.profile-edit-modal__input {
+.popup__input {
   box-sizing: border-box;
   border: 0;
   width: 100%;
   height: 24px;
-  border-bottom: 1px solid #bcbcc4;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
   background-color: transparent;
-  margin-top: 28px;
   font-family: inherit;
   font-size: 0.875rem;
   padding: 1rem 0;
+  margin-top: 30px;
 }
 
-.profile-edit-modal__input:focus {
+.popup__input:focus {
   outline-color: transparent;
 }
 
-.profile-edit-modal__input::placeholder {
+.popup__input::placeholder {
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;

@@ -1,15 +1,13 @@
 .page {
-  display: grid;
+  min-height: 100vh;
+  display: flex;
   flex-flow: column;
-  grid-template-rows: 160px 1fr 140px;
+  align-items: center;
   background-color: black;
   color: white;
   box-sizing: border-box;
-  gap: 0;
   margin: 0;
   padding: 0;
-  height: 100vh;
-
   font-family: 'Inter', sans-serif;
   font-weight: normal;
   -moz-osx-font-smoothing: grayscale;
@@ -19,11 +17,6 @@
   -moz-text-size-adjust: 100%;
 }
 
-@media screen and (max-width: 879px){
-  .page {
-    grid-template-rows: 126px 1fr 104px;
-  }
-}
 
 /** {*/
 /*  outline: 1px solid salmon;*/

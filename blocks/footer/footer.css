@@ -1,12 +1,9 @@
 .footer {
   box-sizing: border-box;
-  display: inline-grid;
-  grid-template-columns: 1fr;
+  flex-shrink: 0;
+  display: flex;
   width: 100%;
   max-width: 880px;
-  max-height: 20px;
-  min-height: 20px;
-  justify-self: center;
   justify-content: space-between;
   padding: 60px 0 60px;
 }

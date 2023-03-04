@@ -7,10 +7,12 @@
 @import "../blocks/header/header.css";
 @import "../blocks/header/__logo/header__logo.css";
 
+@import "../blocks/content/content.css";
+
 @import "../blocks/profile/profile.css";
 @import "../blocks/profile/__avatar/profile__avatar.css";
 @import "../blocks/profile/__info/profile__info.css";
-@import "../blocks/profile/__name /profile__name.css";
+@import "../blocks/profile/__name/profile__name.css";
 @import "../blocks/profile/__description/profile__description.css";
 @import "../blocks/profile/__edit-profile/profile__edit-profile.css";
 @import "../blocks/profile/__add-button/profile__add-button.css";
@@ -19,18 +21,16 @@
 @import "../blocks/card/card.css";
 @import "../blocks/card/__description/card__description.css";
 @import "../blocks/card/__image/card__image.css";
-@import "../blocks/card/__title /card__title.css";
+@import "../blocks/card/__title/card__title.css";
 @import "../blocks/card/__like/card__like.css";
 
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__copyright/footer__copyright.css";
 
-@import "../blocks/profile-edit-form/profile-edit-form.css";
-@import "../blocks/profile-edit-form/__form/profile-edit-modal__form.css";
-@import "../blocks/profile-edit-form/__title/profile-edit-modal__title.css";
-@import "../blocks/profile-edit-form/__input/profile-edit-modal__input.css";
-@import "../blocks/profile-edit-form/__submit/profile-edit-modal__submit.css";
-@import "../blocks/profile-edit-form/__close/profile-edit-modal__close.css";
-
-
-
+@import "../blocks/popup/popup.css";
+@import "../blocks/popup/__container/popup__container.css";
+@import "../blocks/popup/__title/popup__title.css";
+@import "../blocks/popup/__input/popup__input.css";
+@import "../blocks/popup/__submit/popup__submit.css";
+@import "../blocks/popup/__close/popup__close.css";
+@import "../blocks/popup/_opened/popup_opened.css";

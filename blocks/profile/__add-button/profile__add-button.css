@@ -5,16 +5,14 @@
   min-width: 150px;
   min-height: 50px;
   max-height: 50px;
-  border: 1px solid white;
-  background-color: black;
+  border: 2px solid white;
+  border-radius: 2px;
+  background-image: url("../../../images/icon-add-button.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
   justify-self: center;
   align-self: center;
-  opacity: 1;
-  transition: ease-in-out 0.2s;
-}
-
-.profile__add-button-icon {
-  fill: white;
 }
 
 .profile__add-button:hover {
