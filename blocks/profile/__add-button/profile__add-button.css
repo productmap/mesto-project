@@ -13,11 +13,11 @@
   background-color: transparent;
   justify-self: center;
   align-self: center;
+  transition: ease-in-out 0.2s;
 }
 
 .profile__add-button:hover {
   opacity: .6;
-  transition: ease-in-out 0.2s;
 }
 
 @media screen and (max-width: 879px) {

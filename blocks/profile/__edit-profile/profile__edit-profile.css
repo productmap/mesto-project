@@ -8,11 +8,11 @@
   background-size: auto;
   background-position: center;
   background-repeat: no-repeat;
+  transition: ease-in-out 0.2s;
 }
 
 .profile__edit-profile:hover {
   opacity: .6;
-  transition: ease-in-out 0.2s;
 }
 
 @media screen and (max-width: 879px) {
