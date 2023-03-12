@@ -10,6 +10,7 @@
   color: black;
   box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
   position: relative;
+  animation: slideIn 0.3s;
 }
 
 @media screen and (max-width: 1279px) {
@@ -17,4 +18,9 @@
     padding: 22px;
     max-width: 282px;
   }
+}
+
+@keyframes slideIn {
+  from {bottom: -500px; opacity: 0}
+  to {bottom: 0; opacity: 1}
 }

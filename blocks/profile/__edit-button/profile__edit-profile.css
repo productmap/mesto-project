@@ -1,4 +1,4 @@
-.profile__edit-profile {
+.profile__edit-button {
   width: 24px;
   height: 24px;
   border: 1px solid white;
@@ -11,12 +11,12 @@
   transition: ease-in-out 0.2s;
 }
 
-.profile__edit-profile:hover {
+.profile__edit-button:hover {
   opacity: .6;
 }
 
 @media screen and (max-width: 879px) {
-  .profile__edit-profile {
+  .profile__edit-button {
     margin-top: 26px;
     width: 18px;
     height: 18px;

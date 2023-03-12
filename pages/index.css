@@ -14,7 +14,7 @@
 @import "../blocks/profile/__info/profile__info.css";
 @import "../blocks/profile/__name/profile__name.css";
 @import "../blocks/profile/__description/profile__description.css";
-@import "../blocks/profile/__edit-profile/profile__edit-profile.css";
+@import "../blocks/profile/__edit-button/profile__edit-profile.css";
 @import "../blocks/profile/__add-button/profile__add-button.css";
 
 @import "../blocks/cards/cards.css";
@@ -23,6 +23,13 @@
 @import "../blocks/card/__image/card__image.css";
 @import "../blocks/card/__title/card__title.css";
 @import "../blocks/card/__like/card__like.css";
+@import "../blocks/card/__like/_active/card__like_active.css";
+@import "../blocks/card/__delete-button/card__delete-button.css";
+@import "../blocks/card/__zoom/card__zoom.css";
+@import "../blocks/card/__zoom-figure/card__zoom-figure.css";
+@import "../blocks/card/__zoom-image/card__zoom-image.css";
+@import "../blocks/card/__zoom-caption/card__zoom-caption.css";
+@import "../blocks/card/__zoom-close/card__zoom-close.css";
 
 @import "../blocks/footer/footer.css";
 @import "../blocks/footer/__copyright/footer__copyright.css";

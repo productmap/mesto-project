@@ -1,0 +1,31 @@
+.card__zoom-close {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: -36px;
+  right: 0;
+  display: flex;
+  cursor: pointer;
+  transition: opacity .2s;
+  background-image: url("../../../images/icon-close.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  opacity: 1;
+}
+
+@media screen and (min-width: 1279px) {
+  .card__zoom-close {
+    width: 32px;
+    height: 32px;
+    top: -44px;
+    right: -40px;
+  }
+}
+
+.card__zoom-close:hover,
+.card__zoom-close:focus {
+  opacity: .6;
+}
