@@ -31,32 +31,31 @@
 <footer class="footer">
   <p class="footer__copyright">© 2020 Mesto Russia</p>
 </footer>
-
 <!-- Модальное окно редактирования профиля -->
 <div id="profileEdit" class="popup">
   <div class="popup__container">
     <form class="popup__form" action="#">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <input type="text" class="popup__input" value="Жак-Ив Кусто" name="name">
-      <input type="text" class="popup__input" value="Исследователь океана" name="description">
+      <input type="text" class="popup__input" value="Жак-Ив Кусто" name="name" required>
+      <input type="text" class="popup__input" value="Исследователь океана" name="description" required>
       <button type="submit" class="popup__submit">Сохранить</button>
     </form>
     <button class="popup__close" type="button" aria-label="Закрыть"></button>
   </div>
 </div>
-
 <!-- Модальное окно добавления карточки -->
 <div id="newCard" class="popup">
   <div class="popup__container">
     <form class="popup__form" action="#">
       <h2 class="popup__title">Новое место</h2>
-      <input type="text" class="popup__input" placeholder="Название" name="title">
-      <input type="text" class="popup__input" placeholder="Ссылка на картинку" name="link">
+      <input type="text" class="popup__input" placeholder="Название" name="title" required>
+      <input type="text" class="popup__input" placeholder="Ссылка на картинку" name="link" required>
       <button type="submit" class="popup__submit">Сохранить</button>
     </form>
     <button class="popup__close" type="button" aria-label="Закрыть"></button>
   </div>
 </div>
+<!-- Шаблон карточки-->
 <template id="card-template">
   <div class="card">
     <button class="card__delete-button"></button>
@@ -65,6 +64,16 @@
       <h5 class="card__title"></h5>
       <button class="card__like"></button>
     </div>
+  </div>
+</template>
+<!-- Шаблон зума -->
+<template id="zoom-template">
+  <div class="card__zoom">
+    <figure class="card__zoom-figure">
+      <img class="card__zoom-image">
+      <figcaption class="card__zoom-caption"></figcaption>
+      <button class="card__zoom-close"></button>
+    </figure>
   </div>
 </template>
 <script type="module" src="pages/index.js"></script>
