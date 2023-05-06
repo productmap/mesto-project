@@ -1,0 +1,8 @@
+.card__description {
+  margin: 0;
+  padding: 25px 20px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 20px;
+  column-gap: 16px;
+}

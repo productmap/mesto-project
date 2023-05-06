@@ -1,0 +1,28 @@
+.form__submit {
+  background: black;
+  border: 0;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  height: 46px;
+  line-height: 17px;
+  margin: 15px 0 0 0;
+  min-width: 238px;
+  padding-bottom: 5px;
+  text-align: center;
+  transition: opacity .4s;
+  width: 100%;
+}
+
+.form__submit:hover {
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 1279px) {
+  .form__submit {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

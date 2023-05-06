@@ -1,0 +1,28 @@
+.card__like {
+  display: flex;
+  background-image: url("../../../images/icon-like_disable.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  transition: ease .2s;
+  justify-self: stretch;
+  cursor: pointer;
+  min-height: 25px;
+}
+
+.card__like:hover {
+  opacity: 0.5;
+}
+
+.card__like:active {
+  background-image: url("../../../images/icon-like_active.svg");
+}
+
+.card__like-container {
+  display: flex;
+  flex-flow: column;
+}

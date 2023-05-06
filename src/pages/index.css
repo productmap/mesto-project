@@ -1,0 +1,49 @@
+@import "../vendor/normalize.css";
+
+@import "../fonts/fonts.css";
+
+@import "../blocks/page/page.css";
+
+@import "../blocks/header/header.css";
+@import "../blocks/header/__logo/header__logo.css";
+
+@import "../blocks/content/content.css";
+
+@import "../blocks/profile/profile.css";
+@import "../blocks/profile/__avatar/profile__avatar.css";
+@import "../blocks/profile/__avatar-overlay/profile__avatar-overlay.css";
+@import "../blocks/profile/__info/profile__info.css";
+@import "../blocks/profile/__name/profile__name.css";
+@import "../blocks/profile/__description/profile__description.css";
+@import "../blocks/profile/__edit-button/profile__edit-profile.css";
+@import "../blocks/profile/__add-button/profile__add-button.css";
+
+@import "../blocks/cards/cards.css";
+@import "../blocks/card/card.css";
+@import "../blocks/card/__description/card__description.css";
+@import "../blocks/card/__image/card__image.css";
+@import "../blocks/card/__title/card__title.css";
+@import "../blocks/card/__like/card__like.css";
+@import "../blocks/card/__like/_active/card__like_active.css";
+@import "../blocks/card/__like-counter/card__like-counter.css";
+@import "../blocks/card/__delete-button/card__delete-button.css";
+
+@import "../blocks/footer/footer.css";
+@import "../blocks/footer/__copyright/footer__copyright.css";
+
+@import "../blocks/popup/popup.css";
+@import "../blocks/popup/__overlay/popup__overlay.css";
+@import "../blocks/popup/__close-button/popup__close-button.css";
+@import "../blocks/popup/_opened/popup_opened.css";
+@import "../blocks/popup/__container/popup__container.css";
+@import "../blocks/popup/__title/popup__title.css";
+@import "../blocks/popup/__figure/popup__figure.css";
+@import "../blocks/popup/__image/popup__image.css";
+@import "../blocks/popup/__caption/popup__caption.css";
+
+@import "../blocks/form/form.css";
+@import "../blocks/form/__set/form__set.css";
+@import "../blocks/form/__input/form__input.css";
+@import "../blocks/form/__input-error/form__input-error.css";
+@import "../blocks/form/__submit/form__submit.css";
+@import "../blocks/form/__submit/_disabled/form__submit_disabled.css";

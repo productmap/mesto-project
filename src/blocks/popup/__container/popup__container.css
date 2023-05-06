@@ -1,0 +1,27 @@
+.popup__container {
+  box-sizing: border-box;
+  max-width: 430px;
+  min-width: 282px;
+  margin: 0 19px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: white;
+  padding: 36px;
+  color: black;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  animation: slideIn 0.3s;
+  z-index: 5;
+}
+
+@media screen and (max-width: 1279px) {
+  .popup__container {
+    padding: 22px;
+    max-width: 282px;
+  }
+}
+
+@keyframes slideIn {
+  from {bottom: -500px; opacity: 0}
+  to {bottom: 0; opacity: 1}
+}
