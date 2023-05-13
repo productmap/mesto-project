@@ -24,6 +24,7 @@ const inputPlaceImage = formCreateCard.querySelector("input[name='link']");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const inputProfileAvatar = formUpdateAvatar.querySelector("input[name='avatar-link']");
 
+
 const validationConfig = {
   formSelector: '.form',
   inputSelector: '.form__input',
