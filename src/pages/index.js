@@ -1,16 +1,15 @@
 import './index.css';
+import Api from '../components/api'
+
 import {disableSubmit, enableValidation} from '../components/validate'
 import {closePopup, openPopup} from '../components/modal'
 import {createCard} from "../components/card";
-import {addCard, deleteCard, getCards, getProfileInfo, updateProfileAvatar, updateProfileInfo} from "../components/api";
 
 const cardsGallery = document.querySelector('.cards');
-
 const modalProfileEdit = document.querySelector("#profileEdit");
 const modalCreateCard = document.querySelector("#newCard");
 const modalEditAvatar = document.querySelector("#newAvatar");
 const modalDeleteCard = document.querySelector("#deleteCard");
-
 const profileAvatar = document.querySelector('.profile__avatar')
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -24,6 +23,22 @@ const inputPlaceImage = formCreateCard.querySelector("input[name='link']");
 const profileEditButton = document.querySelector(".profile__edit-button");
 const inputProfileAvatar = formUpdateAvatar.querySelector("input[name='avatar-link']");
 
+// tg
+// const tgUsername = document.querySelector('.tg-username')
+// const tg = window.Telegram.WebApp;
+// tg.expand();
+// tgUsername.textContent = tg.initDataUnsafe.user.username;
+// end tg
+
+const config = {
+  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-23/',
+  headers: {
+    authorization: 'a9c8f3fa-c4c8-428a-b274-c9fed27107d1',
+    'Content-Type': 'application/json; charset=UTF-8'
+  }
+}
+
+export const api = new Api(config);
 
 const validationConfig = {
   formSelector: '.form',
@@ -64,7 +79,7 @@ function handleProfileForm(event) {
     about: inputProfileAbout.value
   }
 
-  updateProfileInfo(info)
+  api.updateProfileInfo(info)
     .then(res => {
       profileName.textContent = res.name;
       profileDescription.textContent = res.about;
@@ -92,7 +107,7 @@ function handleCreateCardForm(event) {
   card.name = inputPlaceTitle.value;
   card.link = inputPlaceImage.value;
 
-  addCard(card).then(res => {
+  api.addCard(card).then(res => {
     formCreateCard.reset();
     closePopup(modalCreateCard);
     cardsGallery.prepend(createCard(res, res.owner._id))
@@ -118,7 +133,7 @@ function handleProfileAvatar(event) {
   console.log(inputProfileAvatar.value)
   disableSubmit(event.submitter, validationConfig.inactiveButtonClass);
 
-  updateProfileAvatar(inputProfileAvatar.value)
+  api.updateProfileAvatar(inputProfileAvatar.value)
     .then(res => {
       profileAvatar.src = res.avatar;
       formUpdateAvatar.reset();
@@ -135,7 +150,7 @@ enableValidation(validationConfig);
 // Обработчик удаления карточки
 function handleDeleteCard(event) {
   const cardId = event.submitter.getAttribute('data-card-id');
-  deleteCard(cardId)
+  api.deleteCard(cardId)
     .then(() => {
       closePopup(modalDeleteCard);
       document.querySelector(`.card[data-card-id="${cardId}"]`).remove();
@@ -147,8 +162,8 @@ modalDeleteCard.addEventListener('submit', handleDeleteCard);
 
 // Отрисовка страницы
 Promise.all([
-  getProfileInfo,
-  getCards
+  api.getProfileInfo(),
+  api.getInitialCards()
 ])
   .then(([profile,cards]) => {
 

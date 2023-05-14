@@ -1,6 +1,5 @@
 import {closePopup, openPopup} from "./modal";
-import {addLike, deleteLike} from "./api";
-
+import {api} from "../pages";
 
 const cardTemplate = document.querySelector('#card-template').content;
 const modalCardZoom = document.querySelector("#cardZoom");
@@ -65,14 +64,14 @@ export const createCard = (props, userId) => {
 
   likeButton.addEventListener('click', event => {
     if (event.target.classList.contains("card__like_active")) {
-      deleteLike(props._id)
+      api.deleteLike(props._id)
         .then(res => {
           event.target.classList.remove('card__like_active');
           cardLikeCounter.textContent = res.likes.length;
         })
         .catch(err => console.log(err))
     } else {
-      addLike(props._id)
+      api.addLike(props._id)
         .then(res => {
           event.target.classList.add('card__like_active');
           cardLikeCounter.textContent = res.likes.length;
