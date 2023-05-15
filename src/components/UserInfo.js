@@ -9,7 +9,7 @@ export default class UserInfo {
     this.name = info.name;
     this.about = info.about;
     this.avatar = info.avatar;
-    this.id = info.id;
+    this.id = info._id;
   }
 
   setUserInfo() {
@@ -21,6 +21,7 @@ export default class UserInfo {
   }
 
   renderUserInfo() {
+    console.log(this);
     profileAvatar.src = this.avatar;
     profileName.textContent = this.name;
     profileDescription.textContent = this.about;

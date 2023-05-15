@@ -32,7 +32,7 @@ export const createCard = (props, userId) => {
   cardElement.dataset.cardId = props._id;
   cardElement.querySelector('.card__delete-button').dataset.cardId = props._id;
 
-  // Удаление карточки
+  // Кнопка удаления карточки
   if (props.owner._id === userId) {
     cardElement.querySelector('.card__delete-button').addEventListener('click', () => {
       modalDeleteCard.querySelector('.form__submit').dataset.cardId = props._id;
