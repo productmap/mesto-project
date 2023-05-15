@@ -1,28 +1,21 @@
 import './index.css';
-import Api from '../components/api'
+import Api from '../components/api';
+import UserInfo from "../components/UserInfo";
 
-import {disableSubmit, enableValidation} from '../components/validate'
+import {disableSubmit, enableValidation} from '../components/validate';
 import {closePopup, openPopup} from '../components/modal'
 import {createCard} from "../components/card";
 
-const cardsGallery = document.querySelector('.cards');
-const modalProfileEdit = document.querySelector("#profileEdit");
-const modalCreateCard = document.querySelector("#newCard");
-const modalEditAvatar = document.querySelector("#newAvatar");
-const modalDeleteCard = document.querySelector("#deleteCard");
-const profileAvatar = document.querySelector('.profile__avatar')
-const profileName = document.querySelector(".profile__name");
-const profileDescription = document.querySelector(".profile__description");
-const formEditProfile = modalProfileEdit.querySelector(".form");
-const formCreateCard = modalCreateCard.querySelector(".form");
-const formUpdateAvatar = modalEditAvatar.querySelector(".form");
-const inputProfileName = formEditProfile.querySelector("input[name='name']");
-const inputProfileAbout = formEditProfile.querySelector("input[name='description']");
-const inputPlaceTitle = formCreateCard.querySelector("input[name='title']");
-const inputPlaceImage = formCreateCard.querySelector("input[name='link']");
-const profileEditButton = document.querySelector(".profile__edit-button");
-const inputProfileAvatar = formUpdateAvatar.querySelector("input[name='avatar-link']");
-
+import {
+  modalProfileEdit,
+  modalCreateCard,
+  modalEditAvatar,
+  modalDeleteCard,
+  profileEditButton,
+  formEditProfile,
+  formCreateCard,
+  cardsGallery
+} from '../components/utils'
 // tg
 // const tgUsername = document.querySelector('.tg-username')
 // const tg = window.Telegram.WebApp;
@@ -91,11 +84,13 @@ function handleProfileForm(event) {
 
 formEditProfile.addEventListener('submit', handleProfileForm);
 
+
 // Добавление карточек
 const profileCreateCardButton = document.querySelector(".profile__add-button");
 profileCreateCardButton.addEventListener('click', () => {
   openPopup(modalCreateCard);
 });
+
 
 // Обработчик «отправки» формы добавления карточек
 function handleCreateCardForm(event) {
@@ -165,12 +160,9 @@ Promise.all([
   api.getProfileInfo(),
   api.getInitialCards()
 ])
-  .then(([profile,cards]) => {
-
-    profileAvatar.src = profile.avatar;
-    profileName.textContent = profile.name;
-    profileDescription.textContent = profile.about;
-    profileName.dataset.userId = profile._id;
+  .then(([profile, cards]) => {
+    const owner = new UserInfo(profile)
+    owner.renderUserInfo();
 
     cards.reverse().forEach(card => cardsGallery.prepend(createCard(card, profile._id)));
   })
