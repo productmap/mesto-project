@@ -21,7 +21,6 @@ export default class UserInfo {
   }
 
   renderUserInfo() {
-    console.log(this);
     profileAvatar.src = this.avatar;
     profileName.textContent = this.name;
     profileDescription.textContent = this.about;

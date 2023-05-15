@@ -139,7 +139,6 @@ Promise.all([
   .then(([profile, cards]) => {
     const user = new UserInfo(profile);
     user.renderUserInfo();
-    console.log(user)
     cards.reverse().forEach(card => cardsGallery.prepend(createCard(card, user.id)));
   })
   .catch(err => console.log(err))
