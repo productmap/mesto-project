@@ -1,12 +1,13 @@
 import './index.css';
-import Api from '../components/api';
+import Api from '../components/Api';
 import UserInfo from "../components/UserInfo";
 
 import {disableSubmit, enableValidation} from '../components/validate';
-import {closePopup, openPopup} from '../components/modal'
-import {createCard} from "../components/card";
+import {closePopup, openPopup} from '../components/Popup'
+import {createCard} from "../components/Card";
 
 import {
+  config,
   modalProfileEdit,
   modalCreateCard,
   modalEditAvatar,
@@ -14,33 +15,21 @@ import {
   profileEditButton,
   formEditProfile,
   formCreateCard,
-  cardsGallery
+  cardsGallery,
+  validationConfig,
+  inputPlaceTitle,
+  inputPlaceImage,
+  formUpdateAvatar,
+  profileName,
+  profileDescription,
+  inputProfileName,
+  inputProfileAbout,
+  profileAvatar,
+  inputProfileAvatar
 } from '../components/utils'
-// tg
-// const tgUsername = document.querySelector('.tg-username')
-// const tg = window.Telegram.WebApp;
-// tg.expand();
-// tgUsername.textContent = tg.initDataUnsafe.user.username;
-// end tg
-
-const config = {
-  baseUrl: 'https://nomoreparties.co/v1/plus-cohort-23/',
-  headers: {
-    authorization: 'a9c8f3fa-c4c8-428a-b274-c9fed27107d1',
-    'Content-Type': 'application/json; charset=UTF-8'
-  }
-}
 
 export const api = new Api(config);
 
-const validationConfig = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit',
-  inactiveButtonClass: 'form__submit_disabled',
-  inputErrorClass: 'form__input_error',
-  errorClass: 'form__input-error_active'
-}
 
 const modalsCloser = modal => {
   modal.addEventListener('click', (evt) => {
@@ -142,28 +131,14 @@ modalEditAvatar.addEventListener('submit', handleProfileAvatar);
 
 enableValidation(validationConfig);
 
-// Обработчик удаления карточки
-function handleDeleteCard(event) {
-  const cardId = event.submitter.getAttribute('data-card-id');
-  api.deleteCard(cardId)
-    .then(() => {
-      closePopup(modalDeleteCard);
-      document.querySelector(`.card[data-card-id="${cardId}"]`).remove();
-    })
-    .catch(err => console.log(err))
-}
-
-modalDeleteCard.addEventListener('submit', handleDeleteCard);
-
 // Отрисовка страницы
 Promise.all([
   api.getProfileInfo(),
   api.getInitialCards()
 ])
   .then(([profile, cards]) => {
-    const owner = new UserInfo(profile)
-    owner.renderUserInfo();
-
-    cards.reverse().forEach(card => cardsGallery.prepend(createCard(card, profile._id)));
+    const user = new UserInfo(profile);
+    user.renderUserInfo();
+    cards.reverse().forEach(card => cardsGallery.prepend(createCard(card, user.id)));
   })
   .catch(err => console.log(err))

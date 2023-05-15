@@ -1,12 +1,15 @@
-import {closePopup, openPopup} from "./modal";
+import {closePopup, openPopup} from "./Popup";
 import {api} from "../pages";
 
-const cardTemplate = document.querySelector('#card-template').content;
-const modalCardZoom = document.querySelector("#cardZoom");
-const modalDeleteCard = document.querySelector("#deleteCard");
-const modalOverlay = modalCardZoom.querySelector('.popup__overlay');
-const cardZoomImage = modalCardZoom.querySelector('.popup__image');
-const cardZoomCaption = document.querySelector('.popup__caption');
+import {
+  cardTemplate,
+  modalCardZoom,
+  modalDeleteCard,
+  modalOverlay,
+  cardZoomImage,
+  cardZoomCaption
+} from './utils'
+
 
 modalCardZoom.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('popup__overlay') || evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('popup__image')) {
@@ -83,3 +86,16 @@ export const createCard = (props, userId) => {
   // cards.append(cardElement)
   return cardElement
 }
+
+// Обработчик удаления карточки
+function handleDeleteCard(event) {
+  const cardId = event.submitter.getAttribute('data-card-id');
+  api.deleteCard(cardId)
+    .then(() => {
+      closePopup(modalDeleteCard);
+      document.querySelector(`.card[data-card-id="${cardId}"]`).remove();
+    })
+    .catch(err => console.log(err))
+}
+
+modalDeleteCard.addEventListener('submit', handleDeleteCard);

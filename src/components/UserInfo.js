@@ -7,22 +7,22 @@ import {
 export default class UserInfo {
   constructor(info) {
     this.name = info.name;
-    this.description = info.description;
+    this.about = info.about;
     this.avatar = info.avatar;
-    // this.id = info._id;
+    this.id = info.id;
   }
 
   setUserInfo() {
-    console.log(this)
+    console.log(this);
   }
 
   getUserInfo() {
 
   }
-  renderUserInfo(){
-    console.log(this);
+
+  renderUserInfo() {
     profileAvatar.src = this.avatar;
     profileName.textContent = this.name;
-    profileDescription.textContent = this.description;
+    profileDescription.textContent = this.about;
   }
 }
