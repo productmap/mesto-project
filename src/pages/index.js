@@ -27,9 +27,9 @@ import {
   profileAvatar,
   inputProfileAvatar
 } from '../components/utils'
+import Section from "../components/Section";
 
 export const api = new Api(config);
-
 
 const modalsCloser = modal => {
   modal.addEventListener('click', (evt) => {
@@ -92,8 +92,8 @@ function handleCreateCardForm(event) {
   card.link = inputPlaceImage.value;
 
   api.addCard(card).then(res => {
-    formCreateCard.reset();
     closePopup(modalCreateCard);
+    formCreateCard.reset();
     cardsGallery.prepend(createCard(res, res.owner._id))
   })
     .catch(err => console.log(err))
@@ -138,7 +138,15 @@ Promise.all([
 ])
   .then(([profile, cards]) => {
     const user = new UserInfo(profile);
+    const gallerySection = new Section({
+      items: cards.reverse(),
+      renderer: item => {
+        gallerySection.addItem(createCard(item, user.id));
+      }
+    }, cardsGallery);
+
     user.renderUserInfo();
-    cards.reverse().forEach(card => cardsGallery.prepend(createCard(card, user.id)));
+    gallerySection.renderItems()
+    // cards.reverse().forEach(card => cardsGallery.prepend(createCard(card, user.id)));
   })
   .catch(err => console.log(err))
