@@ -3,6 +3,7 @@ import {
   profileName,
   profileDescription,
 } from './utils';
+import {api} from "../pages";
 
 export default class UserInfo {
   constructor(info) {
@@ -17,7 +18,8 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-
+    // console.log(api.getProfileInfo())
+    return api.getProfileInfo();
   }
 
   renderUserInfo() {

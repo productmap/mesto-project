@@ -1,10 +1,10 @@
 import './index.css';
 import Api from '../components/Api';
 import UserInfo from "../components/UserInfo";
+import Card from "../components/Card";
 
 import {disableSubmit, enableValidation} from '../components/validate';
 import {closePopup, openPopup} from '../components/Popup'
-import {createCard} from "../components/Card";
 
 import {
   config,
@@ -25,7 +25,7 @@ import {
   inputProfileName,
   inputProfileAbout,
   profileAvatar,
-  inputProfileAvatar
+  inputProfileAvatar, cardTemplate
 } from '../components/utils'
 import Section from "../components/Section";
 
@@ -141,7 +141,9 @@ Promise.all([
     const gallerySection = new Section({
       items: cards.reverse(),
       renderer: item => {
-        gallerySection.addItem(createCard(item, user.id));
+        const card = new Card(item, user.id, cardTemplate);
+        // gallerySection.addItem(createCard(item, user.id));
+        gallerySection.addItem(card.render(item, user.id, cardTemplate));
       }
     }, cardsGallery);
 
