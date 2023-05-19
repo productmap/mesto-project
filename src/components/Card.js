@@ -1,20 +1,4 @@
-import {closePopup, openPopup} from "./Popup";
-import {api} from "../pages";
-
-import {
-  modalCardZoom,
-  modalDeleteCard,
-  modalOverlay,
-  cardZoomImage,
-  cardZoomCaption
-} from './utils'
-
-
-modalCardZoom.addEventListener('click', (evt) => {
-  if (evt.target.classList.contains('popup__overlay') || evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('popup__image')) {
-    closePopup(modalCardZoom);
-  }
-});
+import {api, popupDeleteCard, popupZoom} from "../pages";
 
 export default class Card {
   constructor(data, userId, selector) {
@@ -29,16 +13,11 @@ export default class Card {
     this._deleteButton = this._cardElement.querySelector('.card__delete-button');
     this._likeButton = this._cardElement.querySelector('.card__like');
     this._likeCounter = this._cardElement.querySelector('.card__like-counter');
-    this._modalDeleteCard = modalDeleteCard;
   }
 
   // Ручка зума
   _handleZoomCardImage() {
-    cardZoomImage.src = this.link;
-    cardZoomImage.alt = this.name;
-    cardZoomCaption.textContent = this.name;
-    modalOverlay.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
-    openPopup(modalCardZoom);
+    popupZoom.open(this.link, this.name);
   }
 
   // Ручка лайков
@@ -66,7 +45,7 @@ export default class Card {
   _handleDeleteCard() {
     api.deleteCard(this._id)
       .then(() => {
-        closePopup(modalDeleteCard);
+        popupDeleteCard.close();
         this._cardElement.remove();
       })
       .catch(err => console.log(err))
@@ -80,7 +59,7 @@ export default class Card {
     this._likeButton.addEventListener('click', () => this._handlerLikes());
 
     // Обработчик удаления
-    modalDeleteCard.addEventListener('submit', this._handleDeleteCard);
+    // modalDeleteCard.addEventListener('submit', this._handleDeleteCard);
   }
 
   render() {
@@ -91,7 +70,7 @@ export default class Card {
     // Кнопка удаления карточки
     if (this._cardOwner === this._userId) {
       this._deleteButton.addEventListener('click', () => {
-        openPopup(modalDeleteCard);
+        popupDeleteCard.open();
       });
     } else {
       this._deleteButton.remove()
@@ -101,8 +80,10 @@ export default class Card {
     if (this._likes.some(like => like._id === this._userId)) {
       this._likeButton.classList.add('card__like_active');
     }
+
     // Отрисовка счетчика лайков
     this._likeCounter.textContent = this._likes.length;
+
     this._setEventListeners();
     return this._cardElement
   }

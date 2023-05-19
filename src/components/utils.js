@@ -35,7 +35,9 @@ export const cardsGallery = document.querySelector('.cards'),
   // Зум карточки
   modalOverlay = modalCardZoom.querySelector('.popup__overlay'),
   cardZoomImage = modalCardZoom.querySelector('.popup__image'),
-  cardZoomCaption = document.querySelector('.popup__caption')
+  cardZoomCaption = document.querySelector('.popup__caption'),
+
+  profileCreateCardButton = document.querySelector(".profile__add-button")
 
 export const validationConfig = {
   formSelector: '.form',
