@@ -1,30 +1,28 @@
-import {
-  profileAvatar,
-  profileName,
-  profileDescription,
-} from './utils';
-import {api} from "../pages";
-
 export default class UserInfo {
-  constructor(info) {
+  constructor({profileAvatar, profileName, profileDescription}, api) {
+    this.profileAvatar = profileAvatar;
+    this.profileName = profileName;
+    this.profileDescription = profileDescription;
+    this.api = api;
+  }
+
+  _renderUserInfo(info) {
+    this.profileAvatar.src = info.avatar;
+    this.profileName.textContent = info.name;
+    this.profileDescription.textContent = info.about;
+  }
+
+  setUserInfo(info) {
+    this.id = info._id;
     this.name = info.name;
     this.about = info.about;
     this.avatar = info.avatar;
-    this.id = info._id;
-  }
-
-  setUserInfo() {
-    console.log(this);
   }
 
   getUserInfo() {
-    // console.log(api.getProfileInfo())
-    return api.getProfileInfo();
-  }
-
-  renderUserInfo() {
-    profileAvatar.src = this.avatar;
-    profileName.textContent = this.name;
-    profileDescription.textContent = this.about;
+    return this.api.getProfileInfo().then(info => {
+      this.setUserInfo(info);
+      this._renderUserInfo(info);
+     })
   }
 }

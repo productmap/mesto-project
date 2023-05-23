@@ -1,8 +1,6 @@
-import {api, popupDeleteCard, popupZoom} from "../pages";
-
 export default class Card {
-  constructor(data, userId, selector) {
-    this._id = data._id;
+  constructor(data, userId, handlerZoom, handlerRemove, handlerLikes, selector) {
+    this.id = data._id;
     this.name = data.name;
     this.link = data.link;
     this._likes = data.likes;
@@ -13,53 +11,24 @@ export default class Card {
     this._deleteButton = this._cardElement.querySelector('.card__delete-button');
     this._likeButton = this._cardElement.querySelector('.card__like');
     this._likeCounter = this._cardElement.querySelector('.card__like-counter');
-  }
-
-  // Ручка зума
-  _handleZoomCardImage() {
-    popupZoom.open(this.link, this.name);
-  }
-
-  // Ручка лайков
-  _handlerLikes() {
-    {
-      if (this._likeButton.classList.contains("card__like_active")) {
-        api.deleteLike(this._id)
-          .then(res => {
-            this._likeButton.classList.remove('card__like_active');
-            this._likeCounter.textContent = res.likes.length;
-          })
-          .catch(err => console.log(err))
-      } else {
-        api.addLike(this._id)
-          .then(res => {
-            this._likeButton.classList.add('card__like_active');
-            this._likeCounter.textContent = res.likes.length;
-          })
-          .catch(err => console.log(err))
-      }
-    }
-  }
-
-  // Ручка удаления карточки
-  _handleDeleteCard() {
-    api.deleteCard(this._id)
-      .then(() => {
-        popupDeleteCard.close();
-        this._cardElement.remove();
-      })
-      .catch(err => console.log(err))
+    this._handlerZoom = handlerZoom;
+    this._handlerRemove = handlerRemove;
+    this._handlerLikes = handlerLikes;
   }
 
   _setEventListeners() {
     // Вызов зума
-    this._image.addEventListener('click', () => this._handleZoomCardImage());
+    this._image.addEventListener('click', () => this._handlerZoom(this));
 
     // Обработка лайков
-    this._likeButton.addEventListener('click', () => this._handlerLikes());
+    this._likeButton.addEventListener('click', () => this._handlerLikes(this));
 
     // Обработчик удаления
-    // modalDeleteCard.addEventListener('submit', this._handleDeleteCard);
+    this._deleteButton.addEventListener('click', () => this._handlerRemove(this));
+  }
+
+  remove(card) {
+    this._cardElement.remove();
   }
 
   render() {
@@ -68,11 +37,7 @@ export default class Card {
     this._cardElement.querySelector('.card__title').textContent = this.name;
 
     // Кнопка удаления карточки
-    if (this._cardOwner === this._userId) {
-      this._deleteButton.addEventListener('click', () => {
-        popupDeleteCard.open();
-      });
-    } else {
+    if (this._cardOwner !== this._userId) {
       this._deleteButton.remove()
     }
 
