@@ -25,7 +25,6 @@ export default class FormValidator {
 
   _checkInputValidity(inputElement) {
     if (inputElement.validity.patternMismatch) {
-      console.log(inputElement.validationMessage)
       inputElement.setCustomValidity(inputElement.validationMessage);
     } else {
       inputElement.setCustomValidity("");
@@ -68,14 +67,14 @@ export default class FormValidator {
     });
   };
 
-  _disableErrors() {
+  errorReset() {
     this._inputList.forEach(inputElement => {
-        this._checkInputValidity(inputElement);
-  });
-}
+      this._hideInputError(inputElement);
+      this._toggleButtonState(this._inactiveButtonClass);
+    });
+  }
 
   enableValidation() {
-    this._disableErrors();
     this._setEventListeners();
     this._toggleButtonState();
   }

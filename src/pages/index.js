@@ -99,8 +99,8 @@ const addCardValidator = new FormValidator(validationConfig, modalCreateCard);
 addCardValidator.enableValidation();
 
 profileCreateCardButton.addEventListener('click', () => {
+  addCardValidator.errorReset();
   popupAddCard.open();
-  addCardValidator.disableSubmit();
 });
 
 // Ручка формы добавления карточек
