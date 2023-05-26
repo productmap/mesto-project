@@ -77,7 +77,11 @@ const profileAvatarValidator = new FormValidator(validationConfig, modalEditAvat
 
 profileEditAvatar.addEventListener('click', () => {
   profileAvatarValidator.enableValidation();
+<<<<<<< HEAD
   // profileAvatarValidator.disableSubmit();
+=======
+  profileAvatarValidator.disableSubmit();
+>>>>>>> 2e3f029bfb610afadedb3a31a4be9d9fd354788d
   popupEditAvatar.open();
 });
 
@@ -101,7 +105,11 @@ const addCardValidator = new FormValidator(validationConfig, modalCreateCard);
 profileCreateCardButton.addEventListener('click', () => {
   popupAddCard.open();
   addCardValidator.enableValidation();
+<<<<<<< HEAD
   // addCardValidator.disableSubmit();
+=======
+  addCardValidator.disableSubmit();
+>>>>>>> 2e3f029bfb610afadedb3a31a4be9d9fd354788d
 });
 
 // Ручка формы добавления карточек
@@ -197,4 +205,7 @@ Promise.all([
     gallerySection.renderItems(cards.reverse())
   })
   .catch(error => console.log(`Ошибка: ${error}`))
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2e3f029bfb610afadedb3a31a4be9d9fd354788d
