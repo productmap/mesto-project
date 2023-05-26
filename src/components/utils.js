@@ -1,9 +1,18 @@
-export const config = {
+export const apiConfig = {
   baseUrl: 'https://nomoreparties.co/v1/plus-cohort-23/',
   headers: {
     authorization: 'a9c8f3fa-c4c8-428a-b274-c9fed27107d1',
     'Content-Type': 'application/json; charset=UTF-8'
   }
+}
+
+export const validationConfig = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'form__submit_disabled',
+  inputErrorClass: 'form__input_error',
+  errorClass: 'form__input-error_active'
 }
 
 export const cardsGallery = document.querySelector('.cards'),
@@ -29,19 +38,8 @@ export const cardsGallery = document.querySelector('.cards'),
   inputProfileAbout = formEditProfile.querySelector("input[name='description']"),
   inputPlaceTitle = formCreateCard.querySelector("input[name='title']"),
   inputPlaceImage = formCreateCard.querySelector("input[name='link']"),
-  profileEditButton = document.querySelector(".profile__edit-button"),
   inputProfileAvatar = formUpdateAvatar.querySelector("input[name='avatar-link']"),
 
-  // Зум карточки
-  modalOverlay = modalCardZoom.querySelector('.popup__overlay'),
-  cardZoomImage = modalCardZoom.querySelector('.popup__image'),
-  cardZoomCaption = document.querySelector('.popup__caption')
-
-export const validationConfig = {
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit',
-  inactiveButtonClass: 'form__submit_disabled',
-  inputErrorClass: 'form__input_error',
-  errorClass: 'form__input-error_active'
-}
+  profileCreateCardButton = document.querySelector(".profile__add-button"),
+  profileEditButton = document.querySelector(".profile__edit-button"),
+  profileEditAvatar = document.querySelector(".profile__avatar-overlay")
