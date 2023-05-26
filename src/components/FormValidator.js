@@ -68,9 +68,14 @@ export default class FormValidator {
     });
   };
 
-  
+  _disableErrors() {
+    this._inputList.forEach(inputElement => {
+        this._checkInputValidity(inputElement);
+  });
+}
 
   enableValidation() {
+    this._disableErrors();
     this._setEventListeners();
     this._toggleButtonState();
   }
