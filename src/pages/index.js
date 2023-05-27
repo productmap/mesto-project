@@ -1,58 +1,61 @@
 import './index.css';
-import Api from '../components/Api';
-import Card from "../components/Card";
-import FormValidator from "../components/FormValidator";
-import PopupWithForm from "../components/PopupWithForm";
-import PopupWithImage from "../components/PopupWithImage";
-import Section from "../components/Section";
-import UserInfo from "../components/UserInfo";
+import {disableSubmit, enableValidation} from '../components/validate'
+import {closePopup, openPopup} from '../components/modal'
+import {createCard} from "../components/card";
+import {addCard, deleteCard, getCards, getProfileInfo, updateProfileAvatar, updateProfileInfo} from "../components/api";
 
-import {
-  apiConfig,
-  cardTemplate,
-  cardsGallery,
-  inputPlaceImage,
-  inputPlaceTitle,
-  inputProfileAbout,
-  inputProfileAvatar,
-  inputProfileName,
-  modalCardZoom,
-  modalCreateCard,
-  modalDeleteCard,
-  modalEditAvatar,
-  modalProfileEdit,
-  profileAvatar,
-  profileCreateCardButton,
-  profileDescription,
-  profileEditAvatar,
-  profileEditButton,
-  profileName,
-  validationConfig
-} from '../components/utils'
+const cardsGallery = document.querySelector('.cards');
 
-export const api = new Api(apiConfig);
-const user = new UserInfo({
-    profileAvatar,
-    profileName,
-    profileDescription
-  },
-  api
-);
+const modalProfileEdit = document.querySelector("#profileEdit");
+const modalCreateCard = document.querySelector("#newCard");
+const modalEditAvatar = document.querySelector("#newAvatar");
+const modalDeleteCard = document.querySelector("#deleteCard");
 
-/** Редактирование профиля  */
-const popupEditProfile = new PopupWithForm(modalProfileEdit, handleProfileForm);
-const profileFormValidator = new FormValidator(validationConfig, modalProfileEdit);
-profileFormValidator.enableValidation();
+const profileAvatar = document.querySelector('.profile__avatar')
+const profileName = document.querySelector(".profile__name");
+const profileDescription = document.querySelector(".profile__description");
+const formEditProfile = modalProfileEdit.querySelector(".form");
+const formCreateCard = modalCreateCard.querySelector(".form");
+const formUpdateAvatar = modalEditAvatar.querySelector(".form");
+const inputProfileName = formEditProfile.querySelector("input[name='name']");
+const inputProfileAbout = formEditProfile.querySelector("input[name='description']");
+const inputPlaceTitle = formCreateCard.querySelector("input[name='title']");
+const inputPlaceImage = formCreateCard.querySelector("input[name='link']");
+const profileEditButton = document.querySelector(".profile__edit-button");
+const inputProfileAvatar = formUpdateAvatar.querySelector("input[name='avatar-link']");
 
+const validationConfig = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'form__submit_disabled',
+  inputErrorClass: 'form__input_error',
+  errorClass: 'form__input-error_active'
+}
+
+const modalsCloser = modal => {
+  modal.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup__overlay') || evt.target.classList.contains('popup__close-button')) {
+      closePopup(modal);
+    }
+  });
+}
+modalsCloser(modalProfileEdit);
+modalsCloser(modalCreateCard);
+modalsCloser(modalEditAvatar);
+modalsCloser(modalDeleteCard);
+
+
+// Редактирование профиля
 profileEditButton.addEventListener('click', () => {
   inputProfileName.value = profileName.textContent;
   inputProfileAbout.value = profileDescription.textContent;
-  profileFormValidator.errorReset();
-  popupEditProfile.open();
+  openPopup(modalProfileEdit);
 });
 
-// Ручка формы редактирования профиля
+// Обработчик «отправки» формы редактирования профиля
 function handleProfileForm(event) {
+  event.preventDefault();
   event.submitter.textContent = 'Сохранение...';
 
   const info = {
@@ -60,141 +63,99 @@ function handleProfileForm(event) {
     about: inputProfileAbout.value
   }
 
-  api.updateProfileInfo(info)
+  updateProfileInfo(info)
     .then(res => {
       profileName.textContent = res.name;
       profileDescription.textContent = res.about;
-      popupEditProfile.close();
+      closePopup(modalProfileEdit);
     })
     .catch(err => console.log(err))
     .finally(() => event.submitter.textContent = 'Сохранить');
 }
 
-/** Загрузка аватара  */
-const popupEditAvatar = new PopupWithForm(modalEditAvatar, handleProfileAvatar);
-const profileAvatarValidator = new FormValidator(validationConfig, modalEditAvatar);
-profileAvatarValidator.enableValidation();
+formEditProfile.addEventListener('submit', handleProfileForm);
 
-profileEditAvatar.addEventListener('click', () => {
-  profileAvatarValidator.disableSubmit();
-  popupEditAvatar.open();
-});
-
-// Ручка формы редактирования аватара
-function handleProfileAvatar(event) {
-  event.submitter.textContent = 'Сохранение...';
-
-  api.updateProfileAvatar(inputProfileAvatar.value)
-    .then(res => {
-      profileAvatar.src = res.avatar;
-      popupEditAvatar.close();
-    })
-    .catch(err => console.log(err))
-    .finally(() => event.submitter.textContent = 'Сохранить');
-}
-
-/** Добавление карточек  */
-const popupAddCard = new PopupWithForm(modalCreateCard, handleCreateCardForm);
-const addCardValidator = new FormValidator(validationConfig, modalCreateCard);
-addCardValidator.enableValidation();
-
+// Добавление карточек
+const profileCreateCardButton = document.querySelector(".profile__add-button");
 profileCreateCardButton.addEventListener('click', () => {
-  addCardValidator.errorReset();
-  popupAddCard.open();
+  openPopup(modalCreateCard);
 });
 
-// Ручка формы добавления карточек
+// Обработчик «отправки» формы добавления карточек
 function handleCreateCardForm(event) {
+  event.preventDefault();
   event.submitter.textContent = 'Сохранение...';
+  disableSubmit(event.submitter, validationConfig.inactiveButtonClass);
 
-  const card = {
-    name: inputPlaceTitle.value,
-    link: inputPlaceImage.value
-  };
+  const card = {};
+  card.name = inputPlaceTitle.value;
+  card.link = inputPlaceImage.value;
 
-  api.addCard(card).then(res => {
-    gallerySection.addItem(createCard(res));
+  addCard(card).then(res => {
+    formCreateCard.reset();
+    closePopup(modalCreateCard);
+    cardsGallery.prepend(createCard(res, res.owner._id))
   })
     .catch(err => console.log(err))
     .finally(() => {
-      popupAddCard.close();
       event.submitter.textContent = 'Сохранить';
     })
 }
 
-/** Удаление карточки  */
-const popupConfirmDelete = new PopupWithForm(modalDeleteCard, submitRemove);
+formCreateCard.addEventListener('submit', handleCreateCardForm);
 
-// Ручка удаления карточки
-function handlerRemove(card) {
-  popupConfirmDelete.open();
-  popupConfirmDelete.card = card;
-}
+// Загрузка аватара
+const profileEditAvatar = document.querySelector(".profile__avatar-overlay");
+profileEditAvatar.addEventListener('click', () => {
+  openPopup(modalEditAvatar);
+});
 
-// Удаление
-function submitRemove(event) {
-  event.submitter.textContent = 'Удаление...';
-  api.deleteCard(popupConfirmDelete.card.id)
-    .then(() => {
-      popupConfirmDelete.card.remove();
+// Обработчик «отправки» формы редактирования аватара
+function handleProfileAvatar(event) {
+  event.preventDefault();
+  event.submitter.textContent = 'Сохранение...';
+  console.log(inputProfileAvatar.value)
+  disableSubmit(event.submitter, validationConfig.inactiveButtonClass);
+
+  updateProfileAvatar(inputProfileAvatar.value)
+    .then(res => {
+      profileAvatar.src = res.avatar;
+      formUpdateAvatar.reset();
+      closePopup(modalEditAvatar);
     })
     .catch(err => console.log(err))
-    .finally(() => {
-      event.submitter.textContent = 'Да';
-      popupConfirmDelete.close();
+    .finally(() => event.submitter.textContent = 'Сохранить');
+}
+
+modalEditAvatar.addEventListener('submit', handleProfileAvatar);
+
+enableValidation(validationConfig);
+
+// Обработчик удаления карточки
+function handleDeleteCard(event) {
+  const cardId = event.submitter.getAttribute('data-card-id');
+  deleteCard(cardId)
+    .then(() => {
+      closePopup(modalDeleteCard);
+      document.querySelector(`.card[data-card-id="${cardId}"]`).remove();
     })
+    .catch(err => console.log(err))
 }
 
-export const popupZoom = new PopupWithImage(modalCardZoom);
-
-// Ручка зума
-function handlerZoom(card) {
-  popupZoom.open(card.link, card.name);
-}
-
-// Ручка лайков
-function handlerLikes(card) {
-  if (card._likeButton.classList.contains("card__like_active")) {
-    api.deleteLike(card.id)
-      .then(res => {
-        this._likeButton.classList.remove('card__like_active');
-        this._likeCounter.textContent = res.likes.length;
-      })
-      .catch(err => console.log(err))
-  } else {
-    api.addLike(card.id)
-      .then(res => {
-        this._likeButton.classList.add('card__like_active');
-        this._likeCounter.textContent = res.likes.length;
-      })
-      .catch(err => console.log(err))
-  }
-}
-
-// Отрисовка карты
-function createCard(data) {
-  const card = new Card(
-    data,
-    user.id,
-    handlerZoom,
-    handlerRemove,
-    handlerLikes,
-    cardTemplate
-  );
-  return card.render();
-}
-
-// Отрисовка секции
-const gallerySection = new Section({
-  renderer: item => createCard(item)
-}, cardsGallery);
+modalDeleteCard.addEventListener('submit', handleDeleteCard);
 
 // Отрисовка страницы
 Promise.all([
-  user.getUserInfo(),
-  api.getInitialCards()
+  getProfileInfo,
+  getCards
 ])
-  .then(([profile, cards]) => {
-    gallerySection.renderItems(cards.reverse())
+  .then(([profile,cards]) => {
+
+    profileAvatar.src = profile.avatar;
+    profileName.textContent = profile.name;
+    profileDescription.textContent = profile.about;
+    profileName.dataset.userId = profile._id;
+
+    cards.reverse().forEach(card => cardsGallery.prepend(createCard(card, profile._id)));
   })
-  .catch(error => console.log(`Ошибка: ${error}`))
+  .catch(err => console.log(err))

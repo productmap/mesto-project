@@ -19,7 +19,3 @@
 - Еремин Владислав
 - ceo@rocket.name
 - https://t.me/brandevangelist
-_______________________________________________
-
-- Карабин Владимир
-- malderhard@yandex.ru
