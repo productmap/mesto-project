@@ -39,8 +39,6 @@ const user = new UserInfo({
   api
 );
 
-export const popupZoom = new PopupWithImage(modalCardZoom);
-
 /** Редактирование профиля  */
 const popupEditProfile = new PopupWithForm(modalProfileEdit, handleProfileForm);
 const profileFormValidator = new FormValidator(validationConfig, modalProfileEdit);
@@ -49,6 +47,7 @@ profileFormValidator.enableValidation();
 profileEditButton.addEventListener('click', () => {
   inputProfileName.value = profileName.textContent;
   inputProfileAbout.value = profileDescription.textContent;
+  profileFormValidator.errorReset();
   popupEditProfile.open();
 });
 
@@ -74,9 +73,9 @@ function handleProfileForm(event) {
 /** Загрузка аватара  */
 const popupEditAvatar = new PopupWithForm(modalEditAvatar, handleProfileAvatar);
 const profileAvatarValidator = new FormValidator(validationConfig, modalEditAvatar);
+profileAvatarValidator.enableValidation();
 
 profileEditAvatar.addEventListener('click', () => {
-  profileAvatarValidator.enableValidation();
   profileAvatarValidator.disableSubmit();
   popupEditAvatar.open();
 });
@@ -97,11 +96,11 @@ function handleProfileAvatar(event) {
 /** Добавление карточек  */
 const popupAddCard = new PopupWithForm(modalCreateCard, handleCreateCardForm);
 const addCardValidator = new FormValidator(validationConfig, modalCreateCard);
+addCardValidator.enableValidation();
 
 profileCreateCardButton.addEventListener('click', () => {
+  addCardValidator.errorReset();
   popupAddCard.open();
-  addCardValidator.enableValidation();
-  addCardValidator.disableSubmit();
 });
 
 // Ручка формы добавления карточек
@@ -145,6 +144,8 @@ function submitRemove(event) {
       popupConfirmDelete.close();
     })
 }
+
+export const popupZoom = new PopupWithImage(modalCardZoom);
 
 // Ручка зума
 function handlerZoom(card) {
