@@ -23,6 +23,6 @@ export default class UserInfo {
     return this.api.getProfileInfo().then(info => {
       this.setUserInfo(info);
       this._renderUserInfo(info);
-     })
+    })
   }
 }
