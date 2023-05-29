@@ -28,7 +28,7 @@ import {
   profileEditButton,
   profileName,
   validationConfig
-} from '../components/utils'
+} from '../utils/constants'
 
 export const api = new Api(apiConfig);
 const user = new UserInfo({
@@ -45,9 +45,9 @@ const profileFormValidator = new FormValidator(validationConfig, modalProfileEdi
 profileFormValidator.enableValidation();
 
 profileEditButton.addEventListener('click', () => {
-  inputProfileName.value = profileName.textContent;
-  inputProfileAbout.value = profileDescription.textContent;
-  profileFormValidator.errorReset();
+  inputProfileName.value = user.name;
+  inputProfileAbout.value = user.about;
+  profileFormValidator.resetError();
   popupEditProfile.open();
 });
 
@@ -62,8 +62,7 @@ function handleProfileForm(event) {
 
   api.updateProfileInfo(info)
     .then(res => {
-      profileName.textContent = res.name;
-      profileDescription.textContent = res.about;
+      user.renderUserInfo(res);
       popupEditProfile.close();
     })
     .catch(err => console.log(err))
@@ -99,7 +98,7 @@ const addCardValidator = new FormValidator(validationConfig, modalCreateCard);
 addCardValidator.enableValidation();
 
 profileCreateCardButton.addEventListener('click', () => {
-  addCardValidator.errorReset();
+  addCardValidator.resetError();
   popupAddCard.open();
 });
 
@@ -137,11 +136,11 @@ function submitRemove(event) {
   api.deleteCard(popupConfirmDelete.card.id)
     .then(() => {
       popupConfirmDelete.card.remove();
+      popupConfirmDelete.close();
     })
     .catch(err => console.log(err))
     .finally(() => {
       event.submitter.textContent = 'Да';
-      popupConfirmDelete.close();
     })
 }
 
@@ -154,18 +153,16 @@ function handlerZoom(card) {
 
 // Ручка лайков
 function handlerLikes(card) {
-  if (card._likeButton.classList.contains("card__like_active")) {
+  if (card.liked) {
     api.deleteLike(card.id)
       .then(res => {
-        this._likeButton.classList.remove('card__like_active');
-        this._likeCounter.textContent = res.likes.length;
+        card.dislike(res.likes)
       })
       .catch(err => console.log(err))
   } else {
     api.addLike(card.id)
       .then(res => {
-        this._likeButton.classList.add('card__like_active');
-        this._likeCounter.textContent = res.likes.length;
+        card.like(res.likes)
       })
       .catch(err => console.log(err))
   }
@@ -195,6 +192,7 @@ Promise.all([
   api.getInitialCards()
 ])
   .then(([profile, cards]) => {
-    gallerySection.renderItems(cards.reverse())
+    user.renderUserInfo(profile);
+    gallerySection.renderItems(cards.reverse());
   })
   .catch(error => console.log(`Ошибка: ${error}`))

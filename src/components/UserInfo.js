@@ -6,7 +6,7 @@ export default class UserInfo {
     this.api = api;
   }
 
-  _renderUserInfo(info) {
+  renderUserInfo(info) {
     this.profileAvatar.src = info.avatar;
     this.profileName.textContent = info.name;
     this.profileDescription.textContent = info.about;
@@ -19,10 +19,19 @@ export default class UserInfo {
     this.avatar = info.avatar;
   }
 
+  updateUserInfo(info) {
+    return this.api.updateProfileInfo(info)
+      .then(info => {
+        this.setUserInfo(info);
+        return info
+      })
+  }
+
   getUserInfo() {
-    return this.api.getProfileInfo().then(info => {
-      this.setUserInfo(info);
-      this._renderUserInfo(info);
-    })
+    return this.api.getProfileInfo()
+      .then(info => {
+        this.setUserInfo(info);
+        return info
+      })
   }
 }

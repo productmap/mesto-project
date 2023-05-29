@@ -1,18 +1,32 @@
+export default class Popup {
+  constructor(selector) {
+    this.popup = selector;
+    this._closeEscPopup = this._closeEscPopup.bind(this);
+  }
+
 // Открытие поп-апа
-export const openPopup = modalWindow => {
-  modalWindow.classList.add('popup_opened');
-  document.addEventListener('keydown', closeEscPopup);
-}
+  open() {
+    this.popup.classList.add('popup_opened');
+    document.addEventListener('keydown', this._closeEscPopup);
+  }
 
 // Закрытие поп-апа
-export const closePopup = modalWindow => {
-  modalWindow.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeEscPopup);
-};
+  close() {
+    this.popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', this._closeEscPopup);
+  };
 
-function closeEscPopup(event) {
-  if (event.key === 'Escape') {
-    const modal = document.querySelector('.popup_opened');
-    closePopup(modal)
+  _closeEscPopup(event) {
+    if (event.key === 'Escape') {
+      this.close();
+    }
+  }
+
+  _setEventListeners() {
+    this.popup.addEventListener('click', event => {
+      if (event.target.classList.contains('popup__overlay') || event.target.classList.contains('popup__close-button')) {
+        this.close();
+      }
+    });
   }
 }

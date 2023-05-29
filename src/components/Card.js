@@ -14,6 +14,7 @@ export default class Card {
     this._handlerZoom = handlerZoom;
     this._handlerRemove = handlerRemove;
     this._handlerLikes = handlerLikes;
+    this.liked = this._likeButton.classList.contains("card__like_active");
   }
 
   _setEventListeners() {
@@ -25,6 +26,18 @@ export default class Card {
 
     // Обработчик удаления
     this._deleteButton.addEventListener('click', () => this._handlerRemove(this));
+  }
+
+  like(likes) {
+    this._likeButton.classList.add('card__like_active');
+    this._likeCounter.textContent = likes.length;
+    this.liked = true;
+  }
+
+  dislike(likes) {
+    this._likeButton.classList.remove('card__like_active');
+    this._likeCounter.textContent = likes.length;
+    this.liked = false;
   }
 
   remove(card) {
@@ -44,6 +57,7 @@ export default class Card {
     // Отрисовка лайка
     if (this._likes.some(like => like._id === this._userId)) {
       this._likeButton.classList.add('card__like_active');
+      this.liked = true;
     }
 
     // Отрисовка счетчика лайков
