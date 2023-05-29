@@ -35,7 +35,7 @@ export const cardsGallery = document.querySelector('.cards'),
 
   // Инпуты
   inputProfileName = formEditProfile.querySelector("input[name='name']"),
-  inputProfileAbout = formEditProfile.querySelector("input[name='description']"),
+  inputProfileAbout = formEditProfile.querySelector("input[name='about']"),
   inputPlaceTitle = formCreateCard.querySelector("input[name='title']"),
   inputPlaceImage = formCreateCard.querySelector("input[name='link']"),
   inputProfileAvatar = formUpdateAvatar.querySelector("input[name='avatar-link']"),

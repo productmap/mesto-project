@@ -52,17 +52,12 @@ profileEditButton.addEventListener('click', () => {
 });
 
 // Ручка формы редактирования профиля
-function handleProfileForm(event) {
+function handleProfileForm(event,info ) {
   event.submitter.textContent = 'Сохранение...';
-
-  const info = {
-    name: inputProfileName.value,
-    about: inputProfileAbout.value
-  }
 
   api.updateProfileInfo(info)
     .then(res => {
-      user.renderUserInfo(res);
+      user.setUserInfo(res);
       popupEditProfile.close();
     })
     .catch(err => console.log(err))
@@ -85,7 +80,7 @@ function handleProfileAvatar(event) {
 
   api.updateProfileAvatar(inputProfileAvatar.value)
     .then(res => {
-      profileAvatar.src = res.avatar;
+      user.setUserInfo(res);
       popupEditAvatar.close();
     })
     .catch(err => console.log(err))
@@ -192,7 +187,7 @@ Promise.all([
   api.getInitialCards()
 ])
   .then(([profile, cards]) => {
-    user.renderUserInfo(profile);
+    user.setUserInfo(profile);
     gallerySection.renderItems(cards.reverse());
   })
   .catch(error => console.log(`Ошибка: ${error}`))

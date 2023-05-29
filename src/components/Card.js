@@ -56,8 +56,7 @@ export default class Card {
 
     // Отрисовка лайка
     if (this._likes.some(like => like._id === this._userId)) {
-      this._likeButton.classList.add('card__like_active');
-      this.liked = true;
+      this.like(this._likes);
     }
 
     // Отрисовка счетчика лайков
