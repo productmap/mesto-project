@@ -26,7 +26,7 @@ export const cardsGallery = document.querySelector('.cards'),
 
   profileAvatar = document.querySelector('.profile__avatar'),
   profileName = document.querySelector(".profile__name"),
-  profileDescription = document.querySelector(".profile__description"),
+  profileAbout = document.querySelector(".profile__description"),
 
   // Формы
   formEditProfile = modalProfileEdit.querySelector(".form"),
@@ -36,9 +36,9 @@ export const cardsGallery = document.querySelector('.cards'),
   // Инпуты
   inputProfileName = formEditProfile.querySelector("input[name='name']"),
   inputProfileAbout = formEditProfile.querySelector("input[name='about']"),
-  inputPlaceTitle = formCreateCard.querySelector("input[name='title']"),
+  inputPlaceTitle = formCreateCard.querySelector("input[name='name']"),
   inputPlaceImage = formCreateCard.querySelector("input[name='link']"),
-  inputProfileAvatar = formUpdateAvatar.querySelector("input[name='avatar-link']"),
+  inputProfileAvatar = formUpdateAvatar.querySelector("input[name='avatar']"),
 
   profileCreateCardButton = document.querySelector(".profile__add-button"),
   profileEditButton = document.querySelector(".profile__edit-button"),

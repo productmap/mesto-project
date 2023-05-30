@@ -1,15 +1,15 @@
 export default class UserInfo {
-  constructor({profileAvatar, profileName, profileDescription}, api) {
+  constructor({profileAvatar, profileName, profileAbout}, api) {
     this.profileAvatar = profileAvatar;
     this.profileName = profileName;
-    this.profileDescription = profileDescription;
+    this.profileAbout = profileAbout;
     this.api = api;
   }
 
   _renderUserInfo(info) {
     this.profileAvatar.src = info.avatar;
     this.profileName.textContent = info.name;
-    this.profileDescription.textContent = info.about;
+    this.profileAbout.textContent = info.about;
   }
 
   setUserInfo(info) {

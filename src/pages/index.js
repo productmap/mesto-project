@@ -23,7 +23,7 @@ import {
   modalProfileEdit,
   profileAvatar,
   profileCreateCardButton,
-  profileDescription,
+  profileAbout,
   profileEditAvatar,
   profileEditButton,
   profileName,
@@ -34,7 +34,7 @@ export const api = new Api(apiConfig);
 const user = new UserInfo({
     profileAvatar,
     profileName,
-    profileDescription
+    profileAbout
   },
   api
 );
@@ -52,7 +52,7 @@ profileEditButton.addEventListener('click', () => {
 });
 
 // Ручка формы редактирования профиля
-function handleProfileForm(event,info ) {
+function handleProfileForm(event, info) {
   event.submitter.textContent = 'Сохранение...';
 
   api.updateProfileInfo(info)
@@ -75,10 +75,9 @@ profileEditAvatar.addEventListener('click', () => {
 });
 
 // Ручка формы редактирования аватара
-function handleProfileAvatar(event) {
+function handleProfileAvatar(event, info) {
   event.submitter.textContent = 'Сохранение...';
-
-  api.updateProfileAvatar(inputProfileAvatar.value)
+  api.updateProfileAvatar(info.avatar)
     .then(res => {
       user.setUserInfo(res);
       popupEditAvatar.close();
@@ -98,20 +97,15 @@ profileCreateCardButton.addEventListener('click', () => {
 });
 
 // Ручка формы добавления карточек
-function handleCreateCardForm(event) {
+function handleCreateCardForm(event, card) {
   event.submitter.textContent = 'Сохранение...';
-
-  const card = {
-    name: inputPlaceTitle.value,
-    link: inputPlaceImage.value
-  };
 
   api.addCard(card).then(res => {
     gallerySection.addItem(createCard(res));
+    popupAddCard.close();
   })
     .catch(err => console.log(err))
     .finally(() => {
-      popupAddCard.close();
       event.submitter.textContent = 'Сохранить';
     })
 }
@@ -139,7 +133,7 @@ function submitRemove(event) {
     })
 }
 
-export const popupZoom = new PopupWithImage(modalCardZoom);
+const popupZoom = new PopupWithImage(modalCardZoom);
 
 // Ручка зума
 function handlerZoom(card) {
