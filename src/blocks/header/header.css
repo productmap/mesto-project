@@ -1,19 +1,21 @@
 .header {
   box-sizing: border-box;
   display: inline-grid;
-  grid-template-columns: 142px 1fr min-content;
+  grid-template-columns: 280px 1fr min-content;
   max-width: 880px;
   width: 100%;
   justify-self: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(84, 84, 84, 0.7);
-  padding: 45px 0 40px;
+  padding: 18px 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 879px) {
   .header {
-    grid-template-columns: 105px min-content;
-    margin: 18px auto;
-    padding: 0 27px 30px;
+    grid-template-columns: 280px min-content;
+    margin: 0;
+    padding: 22px;
+    justify-self: start;
   }
 }
