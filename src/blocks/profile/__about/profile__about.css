@@ -1,8 +1,8 @@
-.profile__description {
+.profile__about {
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.375rem;
-  color: white;
+  color: var(--color-primary-text);
   margin: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 879px) {
-  .profile__description {
+  .profile__about {
     font-size: 0.875rem;
     line-height: 1.125rem;
     text-align: center;

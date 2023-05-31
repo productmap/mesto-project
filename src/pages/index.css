@@ -7,6 +7,12 @@
 @import "../blocks/header/header.css";
 @import "../blocks/header/__logo/header__logo.css";
 
+@import "../blocks/theme/theme.css";
+@import "../blocks/theme/__slider/switch__slider.css";
+@import "../blocks/theme/__toggle/switch__toggle.css";
+@import "../blocks/theme/_light/theme_light.css";
+@import "../blocks/theme/_dark/theme_dark.css";
+
 @import "../blocks/content/content.css";
 
 @import "../blocks/profile/profile.css";
@@ -14,7 +20,7 @@
 @import "../blocks/profile/__avatar-overlay/profile__avatar-overlay.css";
 @import "../blocks/profile/__info/profile__info.css";
 @import "../blocks/profile/__name/profile__name.css";
-@import "../blocks/profile/__description/profile__description.css";
+@import "../blocks/profile/__about/profile__about.css";
 @import "../blocks/profile/__edit-button/profile__edit-profile.css";
 @import "../blocks/profile/__add-button/profile__add-button.css";
 

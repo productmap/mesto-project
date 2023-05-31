@@ -1,0 +1,12 @@
+.theme_dark {
+  --color-primary-text: #f6f6f6;
+  --color-secondary-text: #f6f6f6;
+  --color-contrast-text: #000;
+  --color-background: #2a2c2d;
+  --font-color: #ffffff;
+  --color-footer-text: #545454;
+  /* */
+  --logo-color: invert(14%) sepia(6%) saturate(348%) hue-rotate(156deg) brightness(101%) contrast(91%);
+  --card-border: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+  --card-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+}
