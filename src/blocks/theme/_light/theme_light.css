@@ -1,0 +1,24 @@
+.theme_light {
+  --color-primary-text: #474749;
+  --color-secondary-text: #77757F;
+  --color-contrast-text: #474749;
+  --color-background: rgb(229, 234, 241);
+  --color-footer-text: #fafbfc;
+  --font-color: #000000;
+  --card-description: #fafbfc;
+  --card-shadow: 0px 0px 2px rgba(153, 153, 153, 0.1), 0px 2px 4px rgba(153, 153, 153, 0.3);
+  /* Эксперименты */
+
+  --logo-color: invert(100%) sepia(2%) saturate(216%) hue-rotate(46deg) brightness(117%) contrast(92%);
+  --card-border: max(0px, min(8px, ((100vw - 4px) - 100%) * 9999)) / 8px;
+  /*--card-shadow: 0 1px 2px var(--shadow-2);*/
+  --shadow-1: rgba(0, 0, 0, 0.1);
+  --shadow-2: rgba(0, 0, 0, 0.2);
+  --shadow-5: rgba(0, 0, 0, 0.5);
+  --shadow-8: rgba(0, 0, 0, 0.8);
+  --shadow-inset: rgba(255, 255, 255, 0.5);
+  --shadow-elevated: 0 8px 20px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  --shadow-persistent: 0px 0px 12px rgba(52, 72, 84, 0.05);
+  --shadow-primary: 0px 5px 12px rgba(52, 72, 84, 0.2);
+}
+

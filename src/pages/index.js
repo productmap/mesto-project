@@ -5,16 +5,14 @@ import FormValidator from "../components/FormValidator";
 import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
 import Section from "../components/Section";
+import ThemeSwitcher from "../components/ThemeSwitcher";
 import UserInfo from "../components/UserInfo";
 
 import {
   apiConfig,
   cardTemplate,
   cardsGallery,
-  inputPlaceImage,
-  inputPlaceTitle,
   inputProfileAbout,
-  inputProfileAvatar,
   inputProfileName,
   modalCardZoom,
   modalCreateCard,
@@ -27,7 +25,8 @@ import {
   profileEditAvatar,
   profileEditButton,
   profileName,
-  validationConfig
+  validationConfig,
+  themeSwitcher
 } from '../utils/constants'
 
 export const api = new Api(apiConfig);
@@ -38,6 +37,12 @@ const user = new UserInfo({
   },
   api
 );
+
+/** Переключатель темы  */
+const theme = new ThemeSwitcher('.switch__toggle');
+themeSwitcher.addEventListener('click', () => {
+  theme.toggleTheme();
+});
 
 /** Редактирование профиля  */
 const popupEditProfile = new PopupWithForm(modalProfileEdit, handleProfileForm);
@@ -98,7 +103,7 @@ profileCreateCardButton.addEventListener('click', () => {
 
 // Ручка формы добавления карточек
 function handleCreateCardForm(event, card) {
-  event.submitter.textContent = 'Сохранение...';
+  event.submitter.textContent = 'Добавление...';
 
   api.addCard(card).then(res => {
     gallerySection.addItem(createCard(res));
@@ -106,7 +111,7 @@ function handleCreateCardForm(event, card) {
   })
     .catch(err => console.log(err))
     .finally(() => {
-      event.submitter.textContent = 'Сохранить';
+      event.submitter.textContent = 'Добавить';
     })
 }
 
@@ -185,3 +190,6 @@ Promise.all([
     gallerySection.renderItems(cards.reverse());
   })
   .catch(error => console.log(`Ошибка: ${error}`))
+
+
+

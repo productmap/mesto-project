@@ -3,8 +3,8 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  background-color: black;
-  color: white;
+  background-color: var(--color-background);
+  color: var(--color-primary-text);
   box-sizing: border-box;
   margin: 0;
   padding: 0;

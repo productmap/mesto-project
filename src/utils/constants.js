@@ -24,9 +24,10 @@ export const cardsGallery = document.querySelector('.cards'),
   modalCardZoom = document.querySelector("#cardZoom"),
   cardTemplate = document.querySelector('#card-template').content,
 
+  // Поля профиля
   profileAvatar = document.querySelector('.profile__avatar'),
   profileName = document.querySelector(".profile__name"),
-  profileAbout = document.querySelector(".profile__description"),
+  profileAbout = document.querySelector(".profile__about"),
 
   // Формы
   formEditProfile = modalProfileEdit.querySelector(".form"),
@@ -40,6 +41,9 @@ export const cardsGallery = document.querySelector('.cards'),
   inputPlaceImage = formCreateCard.querySelector("input[name='link']"),
   inputProfileAvatar = formUpdateAvatar.querySelector("input[name='avatar']"),
 
+  // Кнопки вызова форм
   profileCreateCardButton = document.querySelector(".profile__add-button"),
   profileEditButton = document.querySelector(".profile__edit-button"),
   profileEditAvatar = document.querySelector(".profile__avatar-overlay")
+
+export const themeSwitcher = document.querySelector('.switch__toggle')

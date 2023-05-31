@@ -1,7 +1,7 @@
 .header {
   box-sizing: border-box;
   display: inline-grid;
-  grid-template-columns: 280px 1fr min-content;
+  grid-template-columns: 280px 1fr max-content;
   max-width: 880px;
   width: 100%;
   justify-self: center;

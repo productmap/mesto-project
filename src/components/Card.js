@@ -36,7 +36,11 @@ export default class Card {
 
   dislike(likes) {
     this._likeButton.classList.remove('card__like_active');
-    this._likeCounter.textContent = likes.length;
+    if (likes.length > 0) {
+      this._likeCounter.textContent = likes.length;
+    } else {
+      this._likeCounter.textContent = '';
+    }
     this.liked = false;
   }
 
@@ -60,7 +64,9 @@ export default class Card {
     }
 
     // Отрисовка счетчика лайков
-    this._likeCounter.textContent = this._likes.length;
+    if (this._likes.length > 0) {
+      this._likeCounter.textContent = this._likes.length;
+    }
 
     this._setEventListeners();
     return this._cardElement
