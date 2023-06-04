@@ -5,10 +5,10 @@
   background-color: transparent;
   color: white;
   cursor: pointer;
-  background-image: url("../../../images/icon-profile-edit.svg");
-  background-size: auto;
-  background-position: center;
-  background-repeat: no-repeat;
+  /*background-image: url("../../../images/icon-profile-edit.svg");*/
+  /*background-size: auto;*/
+  /*background-position: center;*/
+  /*background-repeat: no-repeat;*/
   transition: ease-in-out 0.2s;
   /*display: none;*/
 }

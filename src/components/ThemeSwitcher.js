@@ -1,29 +1,29 @@
 export default class ThemeSwitcher {
   constructor(selector) {
     this._toggle = document.querySelector(selector)
-    this.init();
+    this._init();
   }
 
-  setTheme(themeName) {
+  _setTheme(themeName) {
     localStorage.setItem("theme", themeName);
     document.documentElement.className = themeName;
   }
 
-  toggleTheme() {
+  _init() {
     if (localStorage.getItem("theme") === "theme_dark") {
-      this.setTheme("theme_light");
+      this._setTheme("theme_dark");
+      this._toggle.checked = false;
     } else {
-      this.setTheme("theme_dark");
+      this._setTheme("theme_light");
+      this._toggle.checked = true;
     }
   }
 
-  init() {
+  toggleTheme() {
     if (localStorage.getItem("theme") === "theme_dark") {
-      this.setTheme("theme_dark");
-      this._toggle.checked = false;
+      this._setTheme("theme_light");
     } else {
-      this.setTheme("theme_light");
-      this._toggle.checked = true;
+      this._setTheme("theme_dark");
     }
   }
 }

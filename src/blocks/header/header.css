@@ -1,7 +1,8 @@
 .header {
   box-sizing: border-box;
   display: inline-grid;
-  grid-template-columns: 280px 1fr max-content;
+  grid-template-columns: 280px 1fr min-content;
+  grid-gap: .5rem;
   max-width: 880px;
   width: 100%;
   justify-self: center;
@@ -13,7 +14,7 @@
 
 @media screen and (max-width: 879px) {
   .header {
-    grid-template-columns: 280px min-content;
+    grid-template-columns: 240px 1fr min-content;
     margin: 0;
     padding: 22px;
     justify-self: start;
